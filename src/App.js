@@ -1,4 +1,3 @@
-import "./App.css";
 import React from "react";
 import Current from "./components/Current";
 import Forecast from "./components/Forecast";

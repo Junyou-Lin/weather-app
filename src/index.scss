@@ -1,0 +1,55 @@
+$size: 1vw;
+$white: #fbffff;
+$theme-colors: (
+  "light": #cae8e6,
+  "dark": #030d10,
+  "primary": #114253,
+  "secondary": #962d6a,
+  "info": #177bc2,
+  "success": #0a984e,
+  "warning": #e3c60c,
+  "danger": #ee041b,
+);
+
+body {
+  background: map-get($map: $theme-colors, $key: light);
+}
+
+.container-current {
+  width: 70vw;
+  height: 30vw;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.unsplash.com/photo-1594300070414-34b8021779bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2275&q=80");
+  background-size: cover;
+  opacity: 0.8;
+  margin: 5vh auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px;
+  color: $white;
+  .container-current-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2,
+    h3 {
+      margin: 0;
+    }
+    h2 {
+      font-size: 4 * $size;
+    }
+    h3 {
+      font-size: 2.5 * $size;
+    }
+    p {
+      font-size: 2 * $size;
+    }
+  }
+  .container-current-city {
+    @extend .container-current-info;
+    img {
+      width: 10 * $size;
+    }
+  }
+}

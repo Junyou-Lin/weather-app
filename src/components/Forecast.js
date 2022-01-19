@@ -5,14 +5,14 @@ const Forecast = () => {
   console.log(forecastdays);
   return (
     <>
-      <p>134</p>
-      {forecastdays.map((forecastday) => {
+      {/* <p>from forecast</p> */}
+      {/* {forecastdays.map((forecastday) => {
         return (
           <div>
             <p>hi</p>
           </div>
         );
-      })}
+      })} */}
     </>
   );
 };

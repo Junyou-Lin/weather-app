@@ -5,13 +5,21 @@ const Current = () => {
   console.log(current);
   return (
     <>
-      <div>
-        <p>Current Temp: {current.temp_c}</p>
-        <p>Humidity: {current.humidity}</p>
-
-        {/* <p>{current.condition.text}</p> */}
-        {/* <img src={current.condition.icon} alt={current.condition.text} /> */}
-      </div>
+      <section className="container-current">
+        <div className="container-current-info">
+          <h2>
+            {current.temp_c} <span>&#8451;</span>
+          </h2>
+          {/* <h3>{current.condition.text}</h3> */}
+          <p>
+            Humidity: {current.humidity} % | Wind: {current.wind_kph} k/h
+          </p>
+        </div>
+        <div className="container-current-city">
+          <h2>Melbourne</h2>
+          {/* <img src={current.condition.icon} alt={current.condition.text} /> */}
+        </div>
+      </section>
     </>
   );
 };
