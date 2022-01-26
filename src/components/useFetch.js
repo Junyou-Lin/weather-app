@@ -4,16 +4,13 @@ import axios from "axios";
 export default function useFetch(url) {
   const [data, setData] = useState(null);
 
-
-useEffect(() => {
-  axios.get(url).then(
-    (response) => {
-      setData(response.data);
-    }
-  )
-}, [url])
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const res = await axios.get(url);
+      setData(res);
+    };
+    fetchWeather();
+  }, [url]);
 
   return data;
 }
-
-

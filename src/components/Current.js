@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useFetch from "./useFetch";
-const Current = () => {
-  const url =
-    "http://api.weatherapi.com/v1/forecast.json?key=5e3f3e99c31e41eb9db144116221801&q=Melbourne&days=3";
+import News from "./News";
+import Forecast from "./Forecast";
 
-  const data = useFetch(url);
-  console.log(data);
+const Current = ({ city }) => {
+  const api = "5e3f3e99c31e41eb9db144116221801";
+  const url = `http://api.weatherapi.com/v1/forecast.json?key=${api}&q=${city}&days=3`;
 
-  if (!data) {
-    return <div>loading</div>;
+  const weather = useFetch(url);
+
+  if (!weather) {
+    return <div></div>;
   }
 
-  const { current } = data;
+  const { data } = weather;
+  const { current, location } = data;
+  const { name, country } = location;
   const { temp_c, humidity, wind_kph, condition } = current;
   const { text, icon } = condition;
 
@@ -28,10 +32,16 @@ const Current = () => {
           </p>
         </div>
         <div className="container-current-city">
-          <h2>Melbourne</h2>
+          <h2>{name}</h2>
+          <div className="current-separator"></div>
           <img src={icon} alt={text} />
         </div>
       </section>
+      <div className="container-bot">
+        <News country={country} />
+        <div className="separator"></div>
+        <Forecast city={city} />
+      </div>
     </>
   );
 };

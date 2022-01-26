@@ -2,22 +2,19 @@ import React, { useState } from "react";
 import useFetch from "./useFetch";
 import { FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
 
-const News = () => {
-  const Url =
-    "https://newsapi.org/v2/top-headlines?country=au&apiKey=d3f3c17b445f4eda8f0d7cc3b790c95d&pageSize=6";
-  const data = useFetch(Url);
+const News = ({ country }) => {
+  const api = "d3f3c17b445f4eda8f0d7cc3b790c95d";
+  const Url = `https://newsapi.org/v2/everything?q=${country}&apiKey=${api}&pageSize=6`;
+  const news = useFetch(Url);
   const [index, setIndex] = useState(0);
 
-  if (!data) {
+  if (!news) {
     return <div>loading</div>;
   }
+  const { data } = news;
   const { articles } = data;
-  const { title, publishedAt, url } = articles[index];
-  const {
-    title: title1,
-    publishedAt: publishedAt1,
-    url: url1,
-  } = articles[index + 1];
+  const { title, url } = articles[index];
+  const { title: title1, url: url1 } = articles[index + 1];
 
   const checkNumber = (number) => {
     if (number > articles.length - 1) {
@@ -43,29 +40,29 @@ const News = () => {
   return (
     <>
       <div className="container-news">
-        <h2> 📰 Australia Latest News</h2>
+        <h2> 📰 {country} News</h2>
         <li>
           <span className="quote-icon">
             <FaQuoteLeft />
           </span>
-          <a href={url} target="_blank">
+          <a href={url} target="_blank" rel="noreferrer">
             {title}
           </a>
-          <span>
-            ({publishedAt.slice(0, 10) + " " + publishedAt.slice(14, 19)})
-          </span>
+          {/* <span>
+            ({publishedAt.slice(0, 10) + " " + publishedAt.slice(11, 16)})
+          </span> */}
         </li>
         <li>
           <span className="quote-icon">
             <FaQuoteLeft />
           </span>
-          <a href={url1} target="_blank">
+          <a href={url1} target="_blank" rel="noreferrer">
             {title1}
-            {console.log(title1)}
+            {/* {console.log(title1)} */}
           </a>
-          <span>
-            ({publishedAt.slice(0, 10) + " " + publishedAt.slice(14, 19)})
-          </span>
+          {/* <span>
+            ({publishedAt.slice(0, 10) + " " + publishedAt.slice(11, 16)})
+          </span> */}
         </li>
 
         <div className="button-container">
