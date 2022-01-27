@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import useFetch from "./useFetch";
 import News from "./News";
 import Forecast from "./Forecast";
 
-const Current = ({ city }) => {
-  const api = "5e3f3e99c31e41eb9db144116221801";
-  const url = `http://api.weatherapi.com/v1/forecast.json?key=${api}&q=${city}&days=3`;
+const Current = ({ city, removeCity }) => {
+  const weatherapi = "5e3f3e99c31e41eb9db144116221801";
+  const weatherUrl = `http://api.weatherapi.com/v1/forecast.json?key=${weatherapi}&q=${city}&days=3`;
+  const weather = useFetch(weatherUrl);
 
-  const weather = useFetch(url);
+  const photoapi = "2mjgeODMmMyxeYJk-K7AipAAb1ADw6vPD8dUr3Ldy54";
+  const photoUrl = `https://api.unsplash.com/search/photos?query=${city}&client_id=${photoapi}&page=1&per_page=1&oritation=landscape`;
+  const photo = useFetch(photoUrl);
 
-  if (!weather) {
+  if (!weather || !photo) {
     return <div></div>;
   }
 
@@ -18,10 +21,17 @@ const Current = ({ city }) => {
   const { name, country } = location;
   const { temp_c, humidity, wind_kph, condition } = current;
   const { text, icon } = condition;
+  const imageUrl = photo.data.results[0].urls.raw;
+  console.log(imageUrl);
 
   return (
     <>
-      <section className="container-current">
+      <section
+        className="container-current"
+        style={{
+          backgroundImage: `url('${imageUrl}')`,
+        }}
+      >
         <div className="container-current-info">
           <h2>
             {temp_c} <span>&#8451;</span>
@@ -41,6 +51,16 @@ const Current = ({ city }) => {
         <News country={country} />
         <div className="separator"></div>
         <Forecast city={city} />
+      </div>
+      <div className="btn-container">
+        <button
+          className="btn btn-delete"
+          onClick={() => {
+            removeCity(name);
+          }}
+        >
+          delete {name}
+        </button>
       </div>
     </>
   );

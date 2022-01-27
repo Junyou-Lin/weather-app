@@ -11,7 +11,6 @@ const Forecast = ({ city }) => {
   }
   const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRIDAY", "SAT"];
   let today = new Date().getDay();
-  console.log(today);
   const { data } = weather;
   const { forecast } = data;
   const { forecastday } = forecast;

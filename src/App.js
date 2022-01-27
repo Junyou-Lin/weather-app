@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 import Current from "./components/Current";
-import News from "./components/News";
-import Forecast from "./components/Forecast";
 
 const App = () => {
   const [name, setName] = useState("");
-  const [city, setCity] = useState("");
+  const [cities, setCities] = useState([]);
+
   const handleClick = (e) => {
     e.preventDefault();
-    setCity(name);
-    console.log(city);
+    setCities([...cities, name]);
     setName("");
+  };
+
+  const removeCity = (name) => {
+    console.log(name);
+    console.log(cities);
+    let newcities = cities.filter((city) => {
+      if (name.length > city.length) {
+        return !name.toUpperCase().includes(city.toUpperCase());
+      }
+      return !city.toUpperCase().includes(name.toUpperCase());
+    });
+    setCities(newcities);
   };
 
   return (
     <>
       <section className="section-center">
-        <h3>check the weather of any city!</h3>
-        <form className="lorem-form">
-          <label htmlFor="city">enter a city name</label>
+        <form className="form">
+          <label htmlFor="city">Check a city weather:</label>
           <input
             type="text"
             name="city"
@@ -33,8 +42,24 @@ const App = () => {
         </form>
       </section>
 
-      <div>
-        <Current city={city} />
+      <div className="container">
+        {cities.map((city, index) => {
+          return <Current city={city} key={index} removeCity={removeCity} />;
+        })}
+      </div>
+      <div className="btn-container">
+        {cities.length > 1 ? (
+          <button
+            className="btn btn-delete-all btn-delete"
+            onClick={() => {
+              setCities([]);
+            }}
+          >
+            Delete all
+          </button>
+        ) : (
+          <div></div>
+        )}
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 $white: #ffffff;
-$size: 1vw;
+$size: 0.7vw;
 
 $theme-colors: (
   "light": #ddebff,
@@ -35,12 +35,14 @@ li {
 img {
   width: 10 * $size;
 }
+
 .container-current {
-  width: 80vw;
-  height: 30vw;
-  background: linear-gradient(rgba(0, 79, 251, 0.514), rgba(0, 0, 0, 0)),
-    url("https://images.unsplash.com/photo-1594300070414-34b8021779bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2275&q=80");
+  width: 60vw;
+  height: 40vh;
+  // background: linear-gradient(rgba(0, 79, 251, 0.514), rgba(0, 0, 0, 0));
+  //   url("https://images.unsplash.com/photo-1594300070414-34b8021779bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2275&q=80");
   background-size: cover;
+  background-position: center;
   opacity: 0.8;
   margin: auto;
   margin-top: 2rem;
@@ -65,14 +67,14 @@ img {
 }
 
 .container-bot {
-  width: 80vw;
-  // height: 30vw;
+  width: 60vw;
+  height: 35vh;
   display: flex;
   justify-content: space-around;
   margin: auto;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  background-image: linear-gradient(0deg, #6885e686 0%, #bbb9c260 100%);
+  background-image: linear-gradient(0deg, #fff 0%, #fff 100%);
   align-items: center;
 }
 
@@ -186,7 +188,7 @@ img {
   }
 }
 
-.lorem-form {
+.form {
   text-transform: capitalize;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -196,12 +198,14 @@ img {
 }
 
 label {
-  font-size: $size * 3;
+  font-family: sans-serif;
+  font-size: $size * 2;
   color: map-get($map: $theme-colors, $key: dark);
+  text-transform: none;
 }
 input {
   padding: 0.25rem 0.5rem;
-  width: 8rem;
+  width: 12rem;
   border-radius: var(--radius);
   border: none;
   margin: 0 0.5rem;
@@ -211,7 +215,7 @@ input {
 .btn {
   text-transform: uppercase;
   background: map-get($map: $theme-colors, $key: primary);
-  color: map-get($map: $theme-colors, $key: dark);
+  color: map-get($map: $theme-colors, $key: light);
   padding: 0.5rem 0.75rem;
   letter-spacing: 1px;
   display: inline-block;
@@ -222,5 +226,17 @@ input {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   &:hover {
     background: lighten($color: #6885e6, $amount: 10);
+  }
+}
+.btn-container {
+  margin-top: 2vw;
+  text-align: center;
+  width: 100vw;
+}
+
+.btn-delete {
+  background: map-get($map: $theme-colors, $key: danger);
+  &:hover {
+    background: lighten($color: #ff200e, $amount: 10);
   }
 }
