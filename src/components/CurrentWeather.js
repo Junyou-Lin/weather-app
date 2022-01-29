@@ -3,13 +3,13 @@ import useFetch from "./useFetch";
 import News from "./News";
 import Forecast from "./Forecast";
 
-const Current = ({ city, removeCity }) => {
+const CurrentWeather = ({ city, removeCity }) => {
   const weatherapi = "5e3f3e99c31e41eb9db144116221801";
-  const weatherUrl = `http://api.weatherapi.com/v1/forecast.json?key=${weatherapi}&q=${city}&days=3`;
+  const weatherUrl = `https://api.weatherapi.com/v1/forecast.json?key=${weatherapi}&q=${city}&days=3`;
   const weather = useFetch(weatherUrl);
 
   const photoapi = "2mjgeODMmMyxeYJk-K7AipAAb1ADw6vPD8dUr3Ldy54";
-  const photoUrl = `https://api.unsplash.com/search/photos?query=${city}&client_id=${photoapi}&page=1&per_page=1&oritation=landscape`;
+  const photoUrl = `https://api.unsplash.com/search/photos?query=${city}&client_id=${photoapi}&page=1&per_page=1&oritation=landscape&color=black`;
   const photo = useFetch(photoUrl);
 
   if (!weather || !photo) {
@@ -22,7 +22,6 @@ const Current = ({ city, removeCity }) => {
   const { temp_c, humidity, wind_kph, condition } = current;
   const { text, icon } = condition;
   const imageUrl = photo.data.results[0].urls.raw;
-  console.log(imageUrl);
 
   return (
     <>
@@ -66,4 +65,4 @@ const Current = ({ city, removeCity }) => {
   );
 };
 
-export default Current;
+export default CurrentWeather;

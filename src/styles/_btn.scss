@@ -1,0 +1,29 @@
+@import "./variables";
+
+.btn {
+  text-transform: uppercase;
+  background: map-get($map: $theme-colors, $key: primary);
+  color: map-get($map: $theme-colors, $key: light);
+  padding: 0.5rem 0.75rem;
+  letter-spacing: 1px;
+  display: inline-block;
+  font-size: 0.875rem;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  &:hover {
+    background: lighten($color: #6885e6, $amount: 10);
+  }
+}
+.btn-container {
+  margin-top: 2vw;
+  text-align: center;
+}
+
+.btn-delete {
+  background: map-get($map: $theme-colors, $key: danger);
+  &:hover {
+    background: lighten($color: #ff200e, $amount: 10);
+  }
+}

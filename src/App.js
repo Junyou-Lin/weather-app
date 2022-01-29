@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Current from "./components/Current";
+import CurrentWeather from "./components/CurrentWeather";
 
 const App = () => {
   const [name, setName] = useState("");
@@ -12,8 +12,6 @@ const App = () => {
   };
 
   const removeCity = (name) => {
-    console.log(name);
-    console.log(cities);
     let newcities = cities.filter((city) => {
       if (name.length > city.length) {
         return !name.toUpperCase().includes(city.toUpperCase());
@@ -27,7 +25,10 @@ const App = () => {
     <>
       <section className="section-center">
         <form className="form">
+          {/* <div className="search-city"> */}
           <label htmlFor="city">Check a city weather:</label>
+          {/* </div> */}
+          {/* <div className=""> */}
           <input
             type="text"
             name="city"
@@ -39,16 +40,21 @@ const App = () => {
           <button type="submit" className="btn" onClick={handleClick}>
             Search
           </button>
+          {/* </div> */}
         </form>
       </section>
 
-      <div className="container">
+      <ul className="container">
         {cities.map((city, index) => {
-          return <Current city={city} key={index} removeCity={removeCity} />;
+          return (
+            <li>
+              <CurrentWeather city={city} key={index} removeCity={removeCity} />
+            </li>
+          );
         })}
-      </div>
+      </ul>
       <div className="btn-container">
-        {cities.length > 1 ? (
+        {cities.length > 1 && (
           <button
             className="btn btn-delete-all btn-delete"
             onClick={() => {
@@ -57,8 +63,6 @@ const App = () => {
           >
             Delete all
           </button>
-        ) : (
-          <div></div>
         )}
       </div>
     </>
