@@ -3,7 +3,17 @@ import useFetch from "./useFetch";
 import News from "./News";
 import Forecast from "./Forecast";
 
-const CurrentWeather = ({ city, removeCity }) => {
+const CurrentWeather = ({ city, cities, setCities }) => {
+  const removeCity = (name) => {
+    let newcities = cities.filter((city) => {
+      if (name.length > city.length) {
+        return !name.toUpperCase().includes(city.toUpperCase());
+      }
+      return !city.toUpperCase().includes(name.toUpperCase());
+    });
+    setCities(newcities);
+  };
+
   const weatherapi = "5e3f3e99c31e41eb9db144116221801";
   const weatherUrl = `https://api.weatherapi.com/v1/forecast.json?key=${weatherapi}&q=${city}&days=3`;
   const weather = useFetch(weatherUrl);
